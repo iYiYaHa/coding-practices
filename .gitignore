@@ -3,3 +3,9 @@ Debug/*
 x64
 ./Debug/*
 ./x64
+
+*.db
+*.log
+*.suo
+*.obj
+*.exe
