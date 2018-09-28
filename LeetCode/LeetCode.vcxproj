@@ -119,6 +119,8 @@
     <ClCompile Include="Problem3.cpp" />
     <ClCompile Include="Problem303.cpp" />
     <ClCompile Include="Problem338.cpp" />
+    <ClCompile Include="Problem343.cpp" />
+    <ClCompile Include="Problem357.cpp" />
     <ClCompile Include="Problem4.cpp" />
     <ClCompile Include="Problem413.cpp" />
     <ClCompile Include="Problem5.cpp" />
@@ -126,6 +128,8 @@
     <ClCompile Include="Problem647.cpp" />
     <ClCompile Include="Problem7.cpp" />
     <ClCompile Include="Problem70.cpp" />
+    <ClCompile Include="Problem714.cpp" />
+    <ClCompile Include="Problem728.cpp" />
     <ClCompile Include="Problem746.cpp" />
     <ClCompile Include="Problem8.cpp" />
     <ClCompile Include="Problem877.cpp" />
