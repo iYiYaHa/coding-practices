@@ -102,5 +102,8 @@
     <ClCompile Include="Problem535.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Problem654.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
