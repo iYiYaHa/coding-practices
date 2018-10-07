@@ -114,5 +114,8 @@
     <ClCompile Include="Problem832.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Problem890.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
