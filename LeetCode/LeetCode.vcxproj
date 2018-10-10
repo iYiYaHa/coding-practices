@@ -150,6 +150,9 @@
     <ClCompile Include="Problem169.cpp" />
     <ClCompile Include="Problem905.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="problem_to_be_reviewed.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
