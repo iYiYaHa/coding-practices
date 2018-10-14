@@ -135,6 +135,12 @@
     <ClCompile Include="Problem638.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Problem561.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem852.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="problem_to_be_reviewed.md">
