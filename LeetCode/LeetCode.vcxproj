@@ -150,9 +150,11 @@
     <ClCompile Include="Problem877.cpp" />
     <ClCompile Include="Problem883.cpp" />
     <ClCompile Include="Problem890.cpp" />
+    <ClCompile Include="Problem894.cpp" />
     <ClCompile Include="Problem9.cpp" />
     <ClCompile Include="Problem169.cpp" />
     <ClCompile Include="Problem905.cpp" />
+    <ClCompile Include="Problem921.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="problem_to_be_reviewed.md" />
