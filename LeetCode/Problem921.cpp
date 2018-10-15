@@ -2,8 +2,8 @@
 ////
 ////Problem Description:
 ////  Given a string S of '(' and ')' parentheses, we add the minimum number of 
-//// parentheses ( '(' or ')', and in any positions ) so that the resulting 
-//// parentheses string is valid.
+////  parentheses ( '(' or ')', and in any positions ) so that the resulting 
+////  parentheses string is valid.
 //// 
 //// Formally, a parentheses string is valid if and only if:
 //// 
