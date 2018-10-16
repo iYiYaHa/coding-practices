@@ -135,7 +135,23 @@
     <ClCompile Include="Problem638.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Problem 861.cpp">
+=======
+    <ClCompile Include="Problem561.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem852.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem894.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem921.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem922.cpp">
+>>>>>>> d012020a9252ba6b532ddb2089850f18603c09b8
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
