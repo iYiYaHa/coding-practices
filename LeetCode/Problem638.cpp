@@ -47,25 +47,70 @@
 //#include <algorithm>
 //
 //class Solution {
+//
 //public:
 //	int shoppingOffers(std::vector<int>& price, std::vector<std::vector<int>>& special, std::vector<int>& needs) {
-//		return 11;
+//		int sum = costDFS(price, special, needs);
+//		return sum;
+//	}
+//private:
+//
+//	int costDFS(const std::vector<int>& price, const std::vector<std::vector<int>>& special, std::vector<int>& needs) {
+//		bool noAvailableFlag = true;
+//		int min_sum = 0;
+//
+//		int sum = 0;
+//		for (int i = 0; i < price.size(); ++i) {
+//			sum += price[i] * needs[i];
+//		}
+//		min_sum = sum;
+//		for (int i = 0; i < special.size(); ++i) {
+//			if (!isOfferAvailable(special[i], needs))
+//				continue;
+//			std::vector<int> new_needs = needs;
+//			for (int j = 0; j < special[i].size() - 1; ++j) {
+//				new_needs[j] = needs[j] - special[i][j];
+//			}
+//			min_sum = std::min(min_sum, special[i][special[i].size() - 1] + costDFS(price, special, new_needs));
+//		}
+//		return min_sum;
+//	}
+//	bool isOfferAvailable(const std::vector<int> &offer, const std::vector<int> &needs) {
+//		if (offer.size() - 1 != needs.size()) {
+//			return false;
+//		}
+//		for (int i = 0; i < offer.size() - 1; ++i) {
+//			if (offer[i] > needs[i])
+//				return false;
+//		}
+//		return true;
 //	}
 //};
 //
 //int main() {
-//	std::vector<int> testCasePrice = { 2,3,4 };
-//	std::vector<std::vector<int>> testCaseSpecial = { {1,1,0,4},{2,2,1,9},{2,2,1,9} };
-//	std::vector<int> testCaseNeeds = { 1,2,1 };
-//	int testAns = 11;
-//		bool res = Solution().shoppingOffers(testCasePrice, testCaseSpecial, testCaseNeeds) == testAns;
-//		if (res) {
-//			std::cout << "Test case passed.\n";
-//		}
-//		else {
-//			std::cout << "Test case failed.\n";
+//	std::vector<int> testCasePrice = { 0, 0, 0 };
+//	std::vector<std::vector<int>> testCaseSpecial = { {1,1,0,4},{2,2,1,9} };
+//	std::vector<int> testCaseNeeds = { 1, 1, 1 };
+//	int testAns = 0;
+//	/////////////////////////////////////////////////////////////////////////
+//	//std::vector<int> testCasePrice = { 2,3,4 };
+//	//std::vector<std::vector<int>> testCaseSpecial = { {1,1,0,4},{2,2,1,9},{2,2,1,9} };
+//	//std::vector<int> testCaseNeeds = { 1,2,1 };
+//	//int testAns = 11;
+//	/////////////////////////////////////////////////////////////////////////
+//	//	std::vector<int> testCasePrice = { 2,5 };
+//	//std::vector<std::vector<int>> testCaseSpecial = { {3,0,5},{1,2,10} };
+//	//std::vector<int> testCaseNeeds = { 3,2 };
+//	//int testAns = 14;
+//	/////////////////////////////////////////////////////////////////////////
+//	bool res = Solution().shoppingOffers(testCasePrice, testCaseSpecial, testCaseNeeds) == testAns;
+//	if (res) {
+//		std::cout << "Test case passed.\n";
+//	}
+//	else {
+//		std::cout << "Test case failed.\n";
 //
-//		}
+//	}
 //	std::cin.get();
 //	return 0;
 //}
