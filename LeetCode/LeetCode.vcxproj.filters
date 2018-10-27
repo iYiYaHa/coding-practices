@@ -162,7 +162,10 @@
     <ClCompile Include="Problem62.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-	  <ClCompile Include="Problem740.cpp">
+    <ClCompile Include="Problem740.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem494.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
