@@ -163,6 +163,7 @@
     <ClCompile Include="Problem905.cpp" />
     <ClCompile Include="Problem921.cpp" />
     <ClCompile Include="Problem922.cpp" />
+    <ClCompile Include="Problem96.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="problem_to_be_reviewed.md" />
