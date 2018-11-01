@@ -150,9 +150,6 @@
     <ClCompile Include="Problem922.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Problem 861.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Problem797.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -166,6 +163,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Problem494.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem861.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem64.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
