@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClCompile Include="Problem377.cpp" />
     <ClCompile Include="Problem64.cpp" />
+    <ClCompile Include="Problem718.cpp" />
     <ClCompile Include="Problem861.cpp" />
     <ClCompile Include="Problem1.cpp" />
     <ClCompile Include="Problem10.cpp" />
