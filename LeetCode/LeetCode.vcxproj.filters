@@ -174,6 +174,15 @@
     <ClCompile Include="Problem96.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Problem377.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem718.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+>>>>>>> 99022fe89f096c2f05a28f3fd38c5e83a5c40972
     <ClCompile Include="Problem309.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
