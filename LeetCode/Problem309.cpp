@@ -72,6 +72,39 @@ public:
 		return dp[n - 1];
 	}
 };
+
+class SolutionD {
+public:
+	int maxProfit(std::vector<int> &prices) {
+		// First convert prices into profits.
+		// Then each transaction can be seen as a consecutive subsequence in profits.
+		// which are split by cool down days and no-action day.
+		// dp[i] = the maximum profits if we take the profit of day i.
+		// dp[i] = the max in 
+		//         1. profits[i] (profits[i] is the start of a new sequence.)
+		//         2. profits[i] + dp[i-1] (profits[i] is part of a subsequence.)
+		//         3. profits[i] + max(dp[j] for all j <= i-3).(profits[i] is the start of a new subsequence, and the previous subsequences end at day j.)
+
+		int n = prices.size();
+		if (n < 2) return 0;
+		int maxProfit = 0;
+		std::vector<int> dp(n, 0);
+		std::vector<int> profits(n, 0);
+		for (int i = 1; i < n; ++i)
+			profits[i] = prices[i] - prices[i - 1];
+		int maxPrev = 0;
+		for (int i = 0; i < n; ++i) {
+			maxPrev = i >= 3 ? std::max(dp[i - 3], maxPrev) : maxPrev;
+			int tmp = 0;
+			tmp = std::max(tmp, i >= 1 ? dp[i - 1] : 0);
+			tmp = std::max(tmp, maxPrev);
+			dp[i] = profits[i] + tmp;
+			maxProfit = std::max(maxProfit, dp[i]);
+		}
+		return maxProfit;
+	}
+};
+
 int main()
 {
 	std::vector < std::vector<int>> testCase = { { 1,2,3,0,2 } };
