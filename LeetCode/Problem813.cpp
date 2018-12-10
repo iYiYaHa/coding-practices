@@ -52,6 +52,28 @@
 //	}
 //};
 //
+//class SolutionB {
+//public:
+//	double largestSumOfAverages(std::vector<int>& A, int K) {
+//		int n = A.size();
+//		std::vector<int> sum(n, 0);
+//		std::vector<double> dp(n, 0);
+//		for (int i = 0; i < n; ++i) {
+//			sum[i] = (i >= 1 ? sum[i - 1] : 0) + A[i];
+//			dp[i] = sum[i] * 1.0 / (i + 1);
+//		}
+//
+//		for (int k = 2; k <= K; ++k) {
+//			for (int i = n - 1; i >= 0; --i) {
+//				dp[i] = 0;
+//				for (int j = k - 2; j < i; ++j) {
+//					dp[i] = std::max(dp[j] + ((sum[i] - sum[j])*1.0 / (i - j)), dp[i]);
+//				}
+//			}
+//		}
+//		return dp[n - 1];
+//	}
+//};
 //int main()
 //{
 //	std::vector < std::pair<std::vector<int>,int>> testCase = { std::make_pair(std::vector<int>({ 9,1,2,3,9 }),20) };
