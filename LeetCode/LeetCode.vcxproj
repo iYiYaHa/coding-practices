@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Problem136.cpp" />
+    <ClCompile Include="Problem137.cpp" />
     <ClCompile Include="Problem309.cpp" />
     <ClCompile Include="Problem377.cpp" />
     <ClCompile Include="Problem64.cpp" />
