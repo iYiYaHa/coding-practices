@@ -7,14 +7,11 @@ public:
 	int singleNumber(std::vector<int>& nums) {
 		int ans = 0;
 		for (int i = 0; i < 32; ++i) {// Traverse each bit
-			int count = 0;				// Recording the number of numbers whose ith bit is 1
+			int count = 0;// Recording the number of numbers whose ith bit is 1
 			for (const int num : nums) {// Traverse every number and judge whether ith bit is 1
-				if ((1 << i) & num)
-					count += 1;
+				count += (num >> i) & 1;
 			}
-			count %= 3;					// Model 3 to filter all numbers appearing three times.
-			if (count != 0)
-				ans |= (1 << i);
+			ans |= ((count % 3) << i);// Model 3 to filter all numbers appearing three times.
 		}
 		return ans;
 	}
