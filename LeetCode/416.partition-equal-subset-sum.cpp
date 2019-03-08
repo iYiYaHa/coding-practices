@@ -157,6 +157,7 @@
 //{
 //	// magic code
 //	// like pruned backtracking
+//	// Update: Wrong solution!!! Just pass all solutions coincidently.
 //public:
 //	bool canPartition(std::vector<int> &nums)
 //	{
