@@ -98,7 +98,6 @@ public:
 	int findMaxForm(std::vector<std::string> &strs, int m, int n)
 	{
 		std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1, 0));
-		std::vector<std::pair<int, int>> weights;
 
 		for (int i = 1; i <= strs.size(); ++i)
 		{
