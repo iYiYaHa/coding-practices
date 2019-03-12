@@ -225,6 +225,9 @@
     <ClCompile Include="416.partition-equal-subset-sum.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="474.ones-and-zeroes.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="problem_to_be_reviewed.md">
