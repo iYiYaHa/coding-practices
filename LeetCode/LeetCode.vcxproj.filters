@@ -231,6 +231,12 @@
     <ClCompile Include="935.Knight-Dialer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="983.minimum-cost-for-tickets.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="problem_to_be_reviewed.md">
