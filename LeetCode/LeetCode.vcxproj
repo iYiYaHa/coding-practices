@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClCompile Include="416.partition-equal-subset-sum.cpp" />
     <ClCompile Include="474.ones-and-zeroes.cpp" />
+    <ClCompile Include="935.Knight-Dialer.cpp" />
     <ClCompile Include="Problem136.cpp" />
     <ClCompile Include="Problem137.cpp" />
     <ClCompile Include="Problem260.cpp" />
