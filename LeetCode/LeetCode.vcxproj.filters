@@ -243,6 +243,9 @@
     <ClCompile Include="374.guess-number-higher-or-lower.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="375.guess-number-higher-or-lower-ii.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="problem_to_be_reviewed.md">

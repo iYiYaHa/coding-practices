@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="120.triangle.cpp" />
+    <ClCompile Include="375.guess-number-higher-or-lower-ii.cpp" />
     <ClCompile Include="374.guess-number-higher-or-lower.cpp" />
     <ClCompile Include="416.partition-equal-subset-sum.cpp" />
     <ClCompile Include="474.ones-and-zeroes.cpp" />
