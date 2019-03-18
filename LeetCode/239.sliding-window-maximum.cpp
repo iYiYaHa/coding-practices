@@ -43,6 +43,9 @@
 
 class Solution
 {
+  // Using deque to solve this problem.
+  // The elements in deque is in decreasing order.
+  // Each time you get a new an element, you pop out all numbers smaller than it and close to slip out of the window.
 public:
   std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k)
   {
@@ -53,7 +56,7 @@ public:
       if (!window.empty() && window.front().second == i - k)
         window.pop_front();
       while (!window.empty() && nums[i] > window.back().first)
-        window.pop_back()
+        window.pop_back();
       window.emplace_back(nums[i], i);
       if (i >= k - 1)
         ans.push_back(window.front().first);
