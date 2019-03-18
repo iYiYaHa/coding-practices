@@ -41,11 +41,12 @@
  * Could you solve it in linear time?
  */
 
-class Solution
+class SolutionA
 {
   // Using deque to solve this problem.
   // The elements in deque is in decreasing order.
   // Each time you get a new an element, you pop out all numbers smaller than it and close to slip out of the window.
+  // Time Complexity: O(n)
 public:
   std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k)
   {
@@ -60,6 +61,26 @@ public:
       window.emplace_back(nums[i], i);
       if (i >= k - 1)
         ans.push_back(window.front().first);
+    }
+    return ans;
+  }
+};
+
+class SolutionB
+{
+  // Using multiset
+  // TimeComplexity: O(nlogn)
+public:
+  std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k)
+  {
+    std::vector<int> ans;
+    std::multiset<int> w;
+    for(int i = 0;i < nums.size(); ++i){
+      w.insert(nums[i]);
+      if(i>=k-1){
+        ans.push_back(*w.rbegin());
+        w.erase(w.find(nums[i-k+1]));
+      }
     }
     return ans;
   }
