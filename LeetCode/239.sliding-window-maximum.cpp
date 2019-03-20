@@ -41,7 +41,7 @@
  * Could you solve it in linear time?
  */
 
-class Solution
+class SolutionA
 {
   // Using deque to solve this problem.
   // The elements in deque is in decreasing order.
@@ -63,4 +63,35 @@ public:
     }
     return ans;
   }
+};
+
+using std::max;
+using std::vector;
+class SolutionB
+{
+    // ref:https://leetcode.com/problems/sliding-window-maximum/discuss/65881/O(n)-solution-in-Java-with-two-simple-pass-in-the-array
+    // Two-pass approach which is really brilliant.
+    // From analysises of the above reference, we can see that from some aspects this approach is equivalent to the deque approach.
+    // Each time we want to output the maximum number of a sliding window, the sliding window can be partitioned into two parts from those boundaries(i % w ==0)
+    // Compare the maximum of each part, we have the maximum number of each window.
+  public:
+    vector<int> maxSlidingWindow(vector<int> &nums, int k)
+    {
+        std::vector<int> left(nums.size() + 1);  // from left to right
+        std::vector<int> right(nums.size() + 1); // from right to left
+        std::vector<int> ans;
+
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            left[i] = i % k == 0 ? nums[i] : max(left[i - 1], nums[i]);
+            const int j = nums.size() - 1 - i;
+            right[j] = j % k == 0 ? nums[j] : max(right[j + 1], nums[j]);
+        }
+
+        for (int i = 0; i + k - 1 < nums.size(); ++i)
+        {
+            ans.push_back(max(right[i], left[i + k - 1]));
+        }
+        return ans;
+    }
 };
