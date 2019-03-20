@@ -43,26 +43,27 @@
 
 class SolutionA
 {
-  // Using deque to solve this problem.
-  // The elements in deque is in decreasing order.
-  // Each time you get a new an element, you pop out all numbers smaller than it and close to slip out of the window.
-public:
-  std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k)
-  {
-    std::deque<std::pair<int, int>> window;
-    std::vector<int> ans;
-    for (int i = 0; i < nums.size(); ++i)
+    // Using deque to solve this problem.
+    // The elements in deque is in decreasing order.
+    // Each time you get a new an element, you pop out all numbers smaller than it and close to slip out of the window.
+    // Time Complexity: O(n)
+  public:
+    std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k)
     {
-      if (!window.empty() && window.front().second == i - k)
-        window.pop_front();
-      while (!window.empty() && nums[i] > window.back().first)
-        window.pop_back();
-      window.emplace_back(nums[i], i);
-      if (i >= k - 1)
-        ans.push_back(window.front().first);
+        std::deque<std::pair<int, int>> window;
+        std::vector<int> ans;
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            if (!window.empty() && window.front().second == i - k)
+                window.pop_front();
+            while (!window.empty() && nums[i] > window.back().first)
+                window.pop_back();
+            window.emplace_back(nums[i], i);
+            if (i >= k - 1)
+                ans.push_back(window.front().first);
+        }
+        return ans;
     }
-    return ans;
-  }
 };
 
 using std::max;
@@ -74,6 +75,7 @@ class SolutionB
     // From analysises of the above reference, we can see that from some aspects this approach is equivalent to the deque approach.
     // Each time we want to output the maximum number of a sliding window, the sliding window can be partitioned into two parts from those boundaries(i % w ==0)
     // Compare the maximum of each part, we have the maximum number of each window.
+    // Time Complexity: O(n)
   public:
     vector<int> maxSlidingWindow(vector<int> &nums, int k)
     {
@@ -91,6 +93,28 @@ class SolutionB
         for (int i = 0; i + k - 1 < nums.size(); ++i)
         {
             ans.push_back(max(right[i], left[i + k - 1]));
+        }
+        return ans;
+    }
+};
+
+class SolutionC
+{
+    // Using multiset
+    // TimeComplexity: O(nlogn)
+  public:
+    std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k)
+    {
+        std::vector<int> ans;
+        std::multiset<int> w;
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            w.insert(nums[i]);
+            if (i >= k - 1)
+            {
+                ans.push_back(*w.rbegin());
+                w.erase(w.find(nums[i - k + 1]));
+            }
         }
         return ans;
     }
