@@ -58,6 +58,7 @@
  */
 
 // ref:https://leetcode.com/problems/wiggle-subsequence/solution/
+// ref:https://leetcode.com/problems/wiggle-subsequence/discuss/84887/C%2B%2B-0ms-O(N)-dynamic-programming-solution
 class SolutionA
 {
     // DP
