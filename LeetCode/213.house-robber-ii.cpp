@@ -42,36 +42,21 @@
  * Total amount you can rob = 1 + 3 = 4.
  * 
  */
-class Solution
-{
     // The introduce of circle making the last state relies on the decision of the first one, causing DP won't work anymore.
     // So here we divide whole solution into two sub solutions according to the first state.
-  public:
-    int rob(vector<int> &nums)
-    {
-        int n = nums.size();
-        if (n == 0)
-            return 0;
-        std::vector<int> dp(n + 1, 0);
-
-        // Rob the first house
-        dp[1] = nums[0];
-        for (int i = 2; i <= n; ++i)
-        {
-            if (i == n){
-                dp[i] = dp[i - 1];
-            }
-            else
-                dp[i] = std::max(dp[i - 2] + nums[i - 1], dp[i - 1]);
+class Solution {
+    int helper(vector<int> &nums, int left, int right){
+        int prev = 0, cur = 0;
+        for(int i = left;i<=right;++i){
+            int tmp = std::max(cur,prev+nums[i]);
+            prev = cur;
+            cur = tmp;
         }
-        int ans = dp.back();
-
-        // Don't rob the first house
-        dp[1] = dp[0] = 0;
-        for (int i = 2; i <= n; ++i)
-        {
-            dp[i] = std::max(dp[i - 2] + nums[i - 1], dp[i - 1]);
-        }
-        return std::max(ans, dp.back());
+        return cur;
+    }
+public:
+    int rob(vector<int>& nums) {
+        if(nums.size()==1)return nums[0];
+        return std::max(helper(nums,0,nums.size()-2),helper(nums,1,nums.size()-1));
     }
 };
