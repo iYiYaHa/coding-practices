@@ -72,9 +72,11 @@ class SolutionA
         return dp.back();
     }
 };
-class Solution
+
+class SolutionB
 {
-    // Dynamic Programming
+    // Dynamic Programming with optimization with the maximum and minimum word length.
+    // Beats 100%, very niubi.
   public:
     bool wordBreak(string s, vector<string> &wordDict)
     {
@@ -84,24 +86,24 @@ class Solution
         {
             dict.insert(word);
             maxLen = std::max(maxLen, static_cast<int>(word.length()));
-            minLen = std::min(maxLen, static_cast<int>(word.length()));
+            minLen = std::min(minLen, static_cast<int>(word.length()));
         }
-        vector<bool> dp(s.size()+1, false);
-        dp[0]=true;
+        vector<bool> dp(s.size() + 1, false);
+        dp[0] = true;
         for (int i = minLen; i <= s.size(); ++i)
         {
-            for (int j = i-minLen+1; j >= std::max(1,i-maxLen+1); --j)
+            for (int j = i - minLen + 1; j >= std::max(1, i - maxLen + 1); --j)
             {
-                dp[i] = dict.find(s.substr(j-1, i - j+1)) != dict.end() && (dp[j - 1]);
+                dp[i] = dict.find(s.substr(j - 1, i - j + 1)) != dict.end() && (dp[j - 1]); // Be careful when computing subscript.
                 if (dp[i])
                     break;
             }
-            std::cout<
         }
         return dp.back();
     }
 };
-class SolutionB
+
+class SolutionC
 {
     map<string, bool> memo;
     // DFS with memoization
@@ -130,5 +132,39 @@ class SolutionB
     {
         sort(wordDict.rbegin(), wordDict.rend());
         return dfs(s, wordDict);
+    }
+};
+
+class SolutionD
+{
+    //BFS
+  public:
+    bool wordBreak(string s, vector<string> &wordDict)
+    {
+        set<int> visited;
+        queue<int> queue;
+        set<string> dict;
+        for (string word : wordDict)
+            dict.insert(word);
+        queue.push(0);
+        while (!queue.empty())
+        {
+            int begInd = queue.front();
+            queue.pop();
+            if (visited.find(begInd) == visited.end())
+            {
+                visited.insert(begInd);
+                for (int endInd = begInd; endInd < s.size(); ++endInd)
+                {
+                    if (dict.find(s.substr(begInd, endInd - begInd + 1)) != dict.end())
+                    {
+                        if (endInd + 1 == s.size())
+                            return true;
+                        queue.push(endInd + 1);
+                    }
+                }
+            }
+        }
+        return false;
     }
 };
