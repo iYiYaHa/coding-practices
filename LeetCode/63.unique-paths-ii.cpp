@@ -45,7 +45,7 @@
  *
  *
  */
-class Solution {
+class SolutionA {
 public:
   int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
     int m = obstacleGrid.size();
@@ -64,5 +64,50 @@ public:
       }
     }
     return dp[m - 1][n - 1];
+  }
+};
+
+class SolutionB {
+  // better logic than solutionA
+public:
+  int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
+    int m = obstacleGrid.size();
+    if (m <= 0)
+      return 0;
+    int n = obstacleGrid[0].size();
+    if (n <= 0)
+      return 0;
+    vector<vector<long>> dp(m + 1, vector<long>(n + 1, 0));
+    dp[0][1] = 1;
+    for (int i = 1; i <= m; ++i) {
+      for (int j = 1; j <= n; ++j) {
+        dp[i][j] =
+            obstacleGrid[i - 1][j - 1] == 1 ? 0 : dp[i - 1][j] + dp[i][j - 1];
+      }
+    }
+    return dp[m][n];
+  }
+};
+class SolutionC {
+  // Optimized on solutionB
+public:
+  int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
+    int m = obstacleGrid.size();
+    if (m <= 0)
+      return 0;
+    int n = obstacleGrid[0].size();
+    if (n <= 0)
+      return 0;
+    vector<long> dp(n, 0);
+    dp[0] = 1;
+    for (int i = 0; i < m; ++i) {
+      for (int j = 0; j < n; ++j) {
+        if (obstacleGrid[i][j] == 1)
+          dp[j] = 0;
+        else if (j > 0)
+          dp[j] += dp[j - 1];
+      }
+    }
+    return dp.back();
   }
 };
