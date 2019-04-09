@@ -55,15 +55,12 @@ public:
     if (n <= 0)
       return 0;
     vector<vector<long>> dp(m, vector<long>(n, 0));
+    dp[0][0] = 1;
     for (int i = 0; i < m; ++i) {
       for (int j = 0; j < n; ++j) {
-        if (i == 0 && j == 0)
-          dp[i][i] = obstacleGrid[i][j] ? 0 : 1;
-        else {
-          long left = i - 1 >= 0 ? dp[i - 1][j] : 0;
-          long above = j - 1 >= 0 ? dp[i][j - 1] : 0;
-          dp[i][j] = obstacleGrid[i][j] == 1 ? 0 : left + above;
-        }
+        long left = i - 1 >= 0 ? dp[i - 1][j] : 0;
+        long above = j - 1 >= 0 ? dp[i][j - 1] : 0;
+        dp[i][j] = obstacleGrid[i][j] == 1 ? 0 : dp[i][j] + left + above;
       }
     }
     return dp[m - 1][n - 1];
