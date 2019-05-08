@@ -9,7 +9,7 @@
 // Since nums contains negative number and a negative number multiplies a negative number produces a positive number,
 // they are quite different.
 
-class Solution
+class SolutionA
 {
 public:
     int maxProduct(vector<int> &nums)
@@ -19,6 +19,22 @@ public:
             if(nums[i] < 0) swap(maxVal, minVal);
             maxVal = max(nums[i], maxVal*nums[i]);
             minVal = min(nums[i], minVal*nums[i]);
+            ans = max(ans,maxVal);
+        }
+        return ans;
+    }
+};
+
+class Solution {
+    // Note that when updating maxVal and minVal, we need to record previous values.
+public:
+    int maxProduct(vector<int>& nums) {
+        int n = nums.size();
+        int ans = nums[0], maxVal = nums[0],minVal = nums[0];
+        for(int i = 1;i<n;++i){
+            int tmp = maxVal;
+            maxVal = max(maxVal*nums[i],max(minVal*nums[i],nums[i]));
+            minVal = min(tmp*nums[i],min(minVal*nums[i],nums[i]));
             ans = max(ans,maxVal);
         }
         return ans;
