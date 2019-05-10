@@ -27,6 +27,9 @@ public:
                     dp[i][j] = dp[i-1][j-1];
                 else
                 {
+                    // dp[i-1][j-1] replace
+                    // dp[i-1][j] delete s1[i]
+                    // dp[i][j-1] insert s2[j] behind s1[i] resulting in dp[i][j-1]
                     dp[i][j ] = min(dp[i][j - 1], min(dp[i - 1][j], dp[i - 1][j - 1])) + 1;
                 }
             }
