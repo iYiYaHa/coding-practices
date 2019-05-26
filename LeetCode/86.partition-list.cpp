@@ -47,7 +47,7 @@ public:
     }
 };
 
-class Solution
+class SolutionB
 {
 public:
     ListNode *partition(ListNode *head, int x)
