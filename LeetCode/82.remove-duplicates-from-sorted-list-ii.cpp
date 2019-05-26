@@ -11,48 +11,43 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class SolutionA
-{
-    // Original answer
+class SolutionA {
+  // Original answer
 public:
-    ListNode *deleteDuplicates(ListNode *head)
-    {
-        ListNode dummy(0);
-        ListNode *prev = &dummy, *beg = head,*cur = head;
-        while (cur != nullptr)
-        {
-            while (cur->next != nullptr && cur->val == cur->next->val)
-            {
-                cur = cur->next;
-            }
-            if(beg==cur){
-                prev->next=beg;
-                prev=prev->next;
-                prev->next=nullptr;
-            }
-            
+  ListNode *deleteDuplicates(ListNode *head) {
+    if (head == nullptr || head->next == nullptr)
+      return head;
+    ListNode dummy(0);
+    ListNode *prev = &dummy, *slow = head, *fast = head;
+    while (fast != nullptr) {
+      if (fast->next != nullptr && fast->val == fast->next->val) {
+        fast = fast->next;
+      } else {
+        if (slow == fast) {
+          prev->next = fast;
+          prev = prev->next;
         }
-        return dummy.next;
+        slow = fast = fast->next;
+        prev->next = nullptr;
+      }
     }
+    return dummy.next;
+  }
 };
-class Solution
-{
-    // It will cause memory leakage.
+class SolutionB {
+  // Recursive
+  // It will cause memory leakage.
 public:
-    ListNode *deleteDuplicates(ListNode *head)
-    {
-        if (head == nullptr || head->next == nullptr)
-            return head;
-        if (head->next->val == head->val)
-        {
-            while (head->next != nullptr && head->val == head->next->val)
-                head = head->next;
-            return deleteDuplicates(head->next);
-        }
-        else
-        {
-            head->next = deleteDuplicates(head->next);
-            return head;
-        }
+  ListNode *deleteDuplicates(ListNode *head) {
+    if (head == nullptr || head->next == nullptr)
+      return head;
+    if (head->val == head->next->val) {
+      while (head->next != nullptr && head->val == head->next->val)
+        head = head->next;
+      return deleteDuplicates(head->next);
+    } else {
+      head->next = deleteDuplicates(head->next);
+      return head;
     }
+  }
 };
