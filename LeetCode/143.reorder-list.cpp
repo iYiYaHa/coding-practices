@@ -49,7 +49,7 @@ public:
     }
 };
 
-class Solution
+class SolutionB
 {
     ListNode *reverseList(ListNode *head)
     {
@@ -76,7 +76,7 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-        
+
         // Reverse the right half
         ListNode *reversedList = reverseList(slow);
 
@@ -91,6 +91,44 @@ public:
 
             reversedList = tmp;
         }
-        cur->next->next = nullptr;
+        cur->next = nullptr;
+    }
+};
+
+class SolutionC
+{
+public:
+    void reorderList(ListNode *head)
+    {
+        if (head == nullptr)
+            return;
+        ListNode *fast = head, *slow = head;
+        while (fast && fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        ListNode *halfHead = slow;
+        slow = slow->next;
+        halfHead->next = nullptr;
+        while (slow != nullptr)
+        {
+            ListNode *tmp = slow->next;
+            slow->next = halfHead;
+            halfHead = slow;
+            slow = tmp;
+        }
+
+        ListNode *cur = head;
+        while (halfHead != nullptr)
+        {
+            ListNode *tmp = halfHead->next;
+            halfHead->next = cur->next;
+            cur->next = halfHead;
+            cur = halfHead->next;
+            halfHead = tmp;
+        }
+        cur->next = nullptr;
     }
 };
