@@ -31,13 +31,12 @@ public:
     ListNode *reverseList(ListNode *head)
     {
         ListNode dummy(0);
-        ListNode *cur = head;
-        while (cur != nullptr)
+        while (head != nullptr)
         {
-            ListNode *tmp = cur->next;
-            cur->next = dummy.next;
-            dummy.next = cur;
-            cur = tmp;
+            ListNode *ele = head;
+            head = head->next;
+            ele->next = dummy.next;
+            dummy.next = ele;
         }
         return dummy.next;
     }
