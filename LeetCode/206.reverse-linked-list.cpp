@@ -42,22 +42,18 @@ public:
     }
 };
 
-class SolutionC
+class Solution
 {
 public:
     ListNode *reverseList(ListNode *head)
     {
-        if (head == nullptr)
-            return head;
-        ListNode *cur = head->next;
-        head->next = nullptr;
-        while (cur != nullptr)
-        {
-            ListNode *ele = cur;
-            cur = cur->next;
-            ele->next = head;
-            head = ele;
+        ListNode *newHead=nullptr;
+        while(head!=nullptr){
+            ListNode *ele=head;
+            head=head->next;
+            ele->next=newHead;
+            newHead = ele;
         }
-        return head;
+        return newHead;
     }
 };
