@@ -42,7 +42,7 @@ public:
     }
 };
 
-class Solution
+class SolutionC
 {
 public:
     ListNode *reverseList(ListNode *head)
