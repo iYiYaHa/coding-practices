@@ -11,7 +11,6 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-// ref:https://leetcode.com/problems/add-two-numbers-ii/discuss/92624/C++-O(1)-extra-space-except-for-output.-Reverse-output-instead.-Is-this-cheating
 class SolutionA
 {
     // Using stack to reverse numbers.
@@ -66,7 +65,7 @@ public:
     }
 };
 
-class Solution
+class SolutionB
 {
     // Using stack to reverse numbers.
     // With logic optimized.
@@ -104,5 +103,64 @@ public:
             dummy.next = newNode;
         }
         return dummy.next;
+    }
+};
+
+class SolutionC
+{
+
+    // ref:https://leetcode.com/problems/add-two-numbers-ii/discuss/92624/C++-O(1)-extra-space-except-for-output.-Reverse-output-instead.-Is-this-cheating
+public:
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+    {
+        int len1 = 0, len2 = 0;
+
+        for (ListNode *cur = l1; cur != nullptr; cur = cur->next)
+            ++len1;
+        for (ListNode *cur = l2; cur != nullptr; cur = cur->next)
+            ++len2;
+
+        ListNode *res = nullptr, *cur1 = l1, *cur2 = l2;
+        while (len1 > 0 && len2 > 0)
+        {
+            int sum = 0;
+            if (len1 >= len2)
+            {
+                sum += l1->val;
+                l1 = l1->next;
+                --len1;
+            }
+            if (len2 > len1)
+            {
+                sum += l2->val;
+                l2 = l2->next;
+                --len2;
+            }
+
+            ListNode *newNode = new ListNode(sum);
+            newNode->next = res;
+            res = newNode;
+        }
+        ListNode *cur = res;
+        res = nullptr;
+        int carry = 0, sum = 0;
+        while (cur != nullptr)
+        {
+            ListNode *ele = cur;
+            cur = cur->next;
+
+            sum = carry + ele->val;
+            ele->val = sum % 10;
+            carry = sum / 10;
+            ele->next = res;
+            res = ele;
+        }
+        if (carry != 0)
+        {
+            ListNode *newNode = new ListNode(carry);
+            newNode->next = res;
+            res = newNode;
+        }
+        return res;
     }
 };
