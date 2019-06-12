@@ -11,6 +11,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+// ref:https://leetcode.com/problems/add-two-numbers-ii/discuss/92624/C++-O(1)-extra-space-except-for-output.-Reverse-output-instead.-Is-this-cheating
 class SolutionA
 {
     // Using stack to reverse numbers.
