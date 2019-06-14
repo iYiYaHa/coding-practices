@@ -87,11 +87,11 @@ public:
 class SolutionC
 {
     // ref: Problem 114
-    Node *flattenHelper(Node *head, Node *rest)
+    Node *merge(Node *head, Node *rest)
     {
         if (head == nullptr)
             return rest;
-        head->next = flattenHelper(head->child, flattenHelper(head->next, rest));
+        head->next = merge(head->child, merge(head->next, rest));
         if (head->next)
             head->next->prev = head;
         head->child = nullptr;
@@ -101,7 +101,7 @@ class SolutionC
 public:
     Node *flatten(Node *head)
     {
-        return flattenHelper(head, nullptr);
+        return merge(head, nullptr);
     }
 };
 
