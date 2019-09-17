@@ -75,7 +75,7 @@ public:
 
 class Solution
 {
-//ref:https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/335668/DP-with-Bit-Masking-Solution-%3A-Best-for-Interviews
+    //ref:https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/335668/DP-with-Bit-Masking-Solution-%3A-Best-for-Interviews
 public:
     bool canPartitionKSubsets(vector<int> &nums, int k)
     {
