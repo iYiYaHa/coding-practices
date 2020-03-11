@@ -24,3 +24,32 @@ public:
         return;
     }
 };
+
+// Non-recursive solution.
+class SolutionB
+{
+public:
+    void Mirror(TreeNode *pRoot)
+    {
+        if (pRoot == nullptr)
+            return;
+        queue<TreeNode *> q;
+        q.push(pRoot);
+        while (!q.empty())
+        {
+            TreeNode *top = q.front();
+            q.pop();
+
+            // Mirror children
+            TreeNode *tmp = top->left;
+            top->left = top->right;
+            top->right = tmp;
+
+            // Process children
+            if (top->left != nullptr)
+                q.push(top->left);
+            if (top->right != nullptr)
+                q.push(top->right);
+        }
+    }
+}
