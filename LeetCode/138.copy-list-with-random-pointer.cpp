@@ -45,7 +45,7 @@ public:
         return dummy.next;
     }
 };
-class Solution
+class SolutionB
 {
     // Take care with logic behind this.
     // Especially handle situations like random points to itself.
