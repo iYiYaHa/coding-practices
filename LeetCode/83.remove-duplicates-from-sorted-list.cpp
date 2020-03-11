@@ -11,7 +11,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+class SolutionA {
   // No need for dummy node.
 public:
   ListNode *deleteDuplicates(ListNode *head) {
@@ -27,4 +27,19 @@ public:
     }
     return head;
   }
+};
+
+class SolutionB {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head==nullptr||head->next==nullptr){
+            return head;
+        }
+        
+        ListNode *cur = head;
+        while(cur!=nullptr && cur->next != nullptr && cur->val == cur->next->val)
+            cur = cur->next;
+        head->next = deleteDuplicates(cur->next);
+        return head;
+    }
 };
