@@ -11,7 +11,6 @@ public:
         vector<string> numStrs;
         for(int num:numbers){numStrs.push_back(std::to_string(num));}
         sort(numStrs.begin(),numStrs.end(),[](string a, string b){return (a+b)<(b+a);});
-        for(string i:numStrs) cout<<i<<endl;
         string res = accumulate(numStrs.begin(), numStrs.end(),string(),[](string a,string b){return a+b;});
         return res;
     }
