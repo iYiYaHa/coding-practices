@@ -10,3 +10,6 @@ x64
 *.obj
 *.exe
 *.user
+CodingInterviews/.vscode/settings.json
+.vscode/settings.json
+LeetCode/.DS_Store
