@@ -36,7 +36,7 @@ class SolutionB
     // 则由以上等式可知 2n + c = x*k x 为一个正整数
     // 由此可想到，如果让一个新的指针从 head 开始走 2n 的距离，恰好可以与 slow 指针在环的起点相遇。
     //
-    // 如果不是看了答案有些思路，这个过程还是不太好推的。
+    // 如果不是看了答案有些思路，这个过程还是不太好推的。看下面第一个 ref！！！
     //
     // ref:http://fisherlei.blogspot.com/2013/11/leetcode-linked-list-cycle-ii-solution.html
     // ref:https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C%2B%2B-with-Detailed-Alogrithm-Description
