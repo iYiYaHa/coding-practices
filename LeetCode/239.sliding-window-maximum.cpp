@@ -76,6 +76,8 @@ class SolutionB
     // Each time we want to output the maximum number of a sliding window, the sliding window can be partitioned into two parts from those boundaries(i % w ==0)
     // Compare the maximum of each part, we have the maximum number of each window.
     // Time Complexity: O(n)
+
+    // Note that  the sliding window's directiton is opposite to the one in the problem's description in the above reference.
   public:
     vector<int> maxSlidingWindow(vector<int> &nums, int k)
     {
