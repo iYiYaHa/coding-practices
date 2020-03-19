@@ -17,8 +17,6 @@ public:
         for (int j = 0; j < k; ++j)
         {
             dp[1][j] = floor((r - j)*1.0 / k) - ceil((l - j)*1.0/ k) + 1;
-            cout << floor((r - j) / k) << " " << ceil((l - j) / k) << endl;
-            // cout << dp[1][j] << " ";
         }
 
         for (int i = 1; i <= n; ++i)
