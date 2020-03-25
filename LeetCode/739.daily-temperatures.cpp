@@ -30,7 +30,7 @@
  */
 
 // @lc code=start
-class Solution
+class SolutionA
 {
 public:
     vector<int> dailyTemperatures(vector<int> &T)
@@ -46,6 +46,29 @@ public:
             else
                 ans[i] = s.top() - i;
             s.push(i);
+        }
+        return ans;
+    }
+};
+
+class Solution
+{
+public:
+    vector<int> dailyTemperatures(vector<int> &T)
+    {
+        vector<int> ans(T.size(), 0);
+        stack<int> s;
+        for(int i = 0;i<T.size();++i){
+            while(!s.empty()&& T[s.top()]<T[i]){
+                ans[s.top()] = i-s.top();
+                s.pop();
+            }
+            s.push(i);
+        }
+        while(!s.empty()){
+            int i = s.top();
+            s.pop();
+            ans[i] = 0;
         }
         return ans;
     }
