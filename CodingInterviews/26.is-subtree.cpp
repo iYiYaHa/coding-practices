@@ -7,6 +7,8 @@ struct TreeNode {
 			val(x), left(NULL), right(NULL) {
 	}
 };*/
+
+// ref:https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/
 class Solution
 {
 public:
