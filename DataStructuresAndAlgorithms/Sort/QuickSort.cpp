@@ -18,11 +18,6 @@ private:
             return;
 
         int ind = partition(nums, left, right);
-        for (int num : nums)
-        {
-            cout << num << " ";
-        }
-        cout << endl;
         quickSort(nums, left, ind - 1);
         quickSort(nums, ind + 1, right);
     }
@@ -31,26 +26,26 @@ private:
     {
         // int pivot = nums[left];
         // int k = left+1;
-        // for(int i = left;i<=right;++i){
+        // for(int i = left+1;i<=right;++i){
         //     if(nums[i]<=pivot){
         //         swap(nums[i],nums[k++]);
         //     }
         // }
-        // swap(nums[left],nums[k-1]);
+        // swap(nums[k-1],nums[left]);
         // return k-1;
-
         int pivot = nums[left];
         int i = left + 1, j = right;
         while (i < j)
         {
-            while (i < j && nums[i] <= pivot)
+            while (i <= j && nums[i] <= pivot)
                 ++i;
-            while (i < j && nums[j] >= pivot)
+            while (i <= j && nums[j] >= pivot)
                 --j;
-            if(i<j)swap(nums[i],nums[j]);
+            if (i < j)
+                swap(nums[i], nums[j]);
         }
-        swap(nums[i-1],nums[left]);
-        return i-1;
+        swap(nums[i - 1], nums[left]);
+        return i - 1;
     }
 };
 
