@@ -39,4 +39,29 @@ class Solution {
     }
 }
 
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if (k < 0)
+            return;
+        k = k % nums.length;
+        int cnt = 0;
+
+        for (int i = 0; cnt < nums.length; ++i) {
+            int begPos = i;
+            int prev = nums[i];
+            do {
+                int next = (i + k) % nums.length;
+
+                int tmp = nums[next];
+                nums[next] = prev;
+                prev = tmp;
+
+                i = next;
+                ++cnt;
+            } while (begPos != i);
+
+        }
+    }
+}
+
 // @lc code=end
