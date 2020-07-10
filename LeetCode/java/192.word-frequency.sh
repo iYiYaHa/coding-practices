@@ -1,0 +1,1 @@
+awk '{for(i=1;i<=NF;++i)s[$i]+=1}END{for(w in s)print(w" "s[w])}' words.txt|sort -nr -k 2 -t ' '
