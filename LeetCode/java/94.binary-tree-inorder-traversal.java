@@ -97,4 +97,29 @@ class Solution {
         return result;
     }
 }
+
+// Morris Traversal
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        TreeNode cur = root;
+        while(cur != null){
+            if(cur.left == null){
+                result.add(cur.val);
+                cur = cur.right;
+            }else{
+                TreeNode pre = cur.left;
+                while(pre.right != null){
+                    pre = pre.right;
+                }
+                pre.right = cur;
+                TreeNode tmp = cur.left;
+                cur.left = null;
+                cur = tmp;
+            }
+        }
+        return result;
+    }
+}
+
 // @lc code=end
