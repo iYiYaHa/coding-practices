@@ -83,5 +83,25 @@ class Solution {
         return result;
     }
 }
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        if(root != null)stack.addLast(root);
+        while(!stack.isEmpty()){
+            TreeNode cur = stack.removeLast();
+            if(cur == null){
+                cur = stack.removeLast();
+                result.add(cur.val);
+            }else{
+                if(cur.right!= null) stack.addLast(cur.right);
+                if(cur.left!= null) stack.addLast(cur.left);
+                stack.addLast(cur);
+                stack.addLast(null);
+            }
+        }
+        return result;
+    }
+}
 // @lc code=end
 

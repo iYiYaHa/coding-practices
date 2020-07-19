@@ -77,5 +77,24 @@ class Solution {
     }
 }
 
-
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        if(root != null)stack.addLast(root);
+        while(!stack.isEmpty()){
+            TreeNode cur = stack.removeLast();
+            if(cur == null){
+                cur = stack.removeLast();
+                result.add(cur.val);
+            }else{
+                if(cur.right!= null) stack.addLast(cur.right);
+                stack.addLast(cur);
+                stack.addLast(null);
+                if(cur.left!= null) stack.addLast(cur.left);
+            }
+        }
+        return result;
+    }
+}
 // @lc code=end

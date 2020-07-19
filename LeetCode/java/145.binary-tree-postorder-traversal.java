@@ -89,21 +89,17 @@ class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> result = new LinkedList<>();
         LinkedList<TreeNode> stack = new LinkedList<>();
-        TreeNode cur = root;
-        if (root != null)
-            stack.addLast(root);
-        while (!stack.isEmpty()) {
-            cur = stack.removeLast();
-            if (cur == null) {
+        if(root != null)stack.addLast(root);
+        while(!stack.isEmpty()){
+            TreeNode cur = stack.removeLast();
+            if(cur == null){
                 cur = stack.removeLast();
                 result.add(cur.val);
-            } else {
+            }else{
                 stack.addLast(cur);
                 stack.addLast(null);
-                if (cur.right != null)
-                    stack.addLast(cur.right);
-                if (cur.left != null)
-                    stack.addLast(cur.left);
+                if(cur.right!= null) stack.addLast(cur.right);
+                if(cur.left!= null) stack.addLast(cur.left);
             }
         }
         return result;
