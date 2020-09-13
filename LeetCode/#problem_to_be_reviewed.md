@@ -17,3 +17,4 @@
 16. 138
 17. 34 and Coding Interviews 53 (binary search)
 18. 382 reservoir sampling.
+19. 33
