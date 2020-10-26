@@ -105,5 +105,26 @@ class Solution {
             return res;
         }
     }
+
+    class Solution {
+        public int numDecodings(String s) {
+            if(s == null)
+                return 0;
+            char[] chars = s.toCharArray();
+            int[] dp = new int[chars.length + 1];
+            dp[0] = 1;
+            
+            for(int i = 1; i <= chars.length; ++i){
+                dp[i] = chars[i-1] == '0' ? 0 : dp[i-1];
+                if(i-1 >= 1){
+                    int firstTwoDigit = (chars[i-2] - '0') * 10 + chars[i-1]-'0';
+                    if(firstTwoDigit >= 10 && firstTwoDigit <= 26)
+                        dp[i] += dp[i-2];
+                }
+            }
+            
+            return dp[chars.length];
+        }
+    }
 }
 // @lc code=end
