@@ -75,56 +75,54 @@
 
 // @lc code=start
 class Solution {
-    class Solution {
-        public int numDecodings(String s) {
-            if (s == null)
-                return 0;
-            Map<Integer, Integer> cache = new HashMap<>();
-            return numDecodings(s.toCharArray(), 0, cache);
-        }
-
-        private int numDecodings(char[] chars, int pos, Map<Integer, Integer> cache) {
-            if (pos >= chars.length)
-                return 1;
-            if (chars[pos] == '0')
-                return 0;
-            if (cache.containsKey(pos)) {
-                return cache.get(pos);
-            }
-            int res = 0;
-            if (pos + 1 < chars.length) {
-                int firstTwoDigit = (chars[pos] - '0') * 10 + chars[pos + 1] - '0';
-                if (firstTwoDigit >= 10 && firstTwoDigit <= 26)
-                    res = numDecodings(chars, pos + 1, cache) + numDecodings(chars, pos + 2, cache);
-                else
-                    res = numDecodings(chars, pos + 1, cache);
-            } else {
-                res = numDecodings(chars, pos + 1, cache);
-            }
-            cache.put(pos, res);
-            return res;
-        }
+    public int numDecodings(String s) {
+        if(s == null)
+            return 0;
+        char[] chars = s.toCharArray();
+        return numDecodings(chars, 0, new HashMap<>());
     }
-
-    class Solution {
-        public int numDecodings(String s) {
-            if(s == null)
-                return 0;
-            char[] chars = s.toCharArray();
-            int[] dp = new int[chars.length + 1];
-            dp[0] = 1;
-            
-            for(int i = 1; i <= chars.length; ++i){
-                dp[i] = chars[i-1] == '0' ? 0 : dp[i-1];
-                if(i-1 >= 1){
-                    int firstTwoDigit = (chars[i-2] - '0') * 10 + chars[i-1]-'0';
-                    if(firstTwoDigit >= 10 && firstTwoDigit <= 26)
-                        dp[i] += dp[i-2];
-                }
+    
+    private int numDecodings(char[] chars, int pos, Map<Integer, Integer> cache){
+        if(pos >= chars.length)
+            return 1;
+        if(cache.containsKey(pos))
+            return cache.get(pos);
+        int res = 0;
+        if(chars[pos] == '0'){
+            res = 0;
+        }else{
+            res = numDecodings(chars, pos + 1, cache);
+            if(pos + 1 < chars.length){
+               int firstTwoDigits = (chars[pos] - '0') * 10 + chars[pos+1] - '0'; 
+               if(firstTwoDigits >= 10 && firstTwoDigits <= 26){
+                   res += numDecodings(chars, pos + 2, cache);
+               }
             }
-            
-            return dp[chars.length];
         }
+        cache.put(pos, res);
+        return res;
     }
 }
+
+class Solution {
+    public int numDecodings(String s) {
+        if (s == null)
+            return 0;
+        char[] chars = s.toCharArray();
+        int[] dp = new int[chars.length + 1];
+        dp[0] = 1;
+
+        for (int i = 1; i <= chars.length; ++i) {
+            dp[i] = chars[i - 1] == '0' ? 0 : dp[i - 1];
+            if (i - 1 >= 1) {
+                int firstTwoDigit = (chars[i - 2] - '0') * 10 + chars[i - 1] - '0';
+                if (firstTwoDigit >= 10 && firstTwoDigit <= 26)
+                    dp[i] += dp[i - 2];
+            }
+        }
+
+        return dp[chars.length];
+    }
+}
+
 // @lc code=end
