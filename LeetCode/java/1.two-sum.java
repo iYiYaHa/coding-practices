@@ -59,15 +59,16 @@
 // @lc code=start
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        if (nums == null)
+        if (nums == null || nums.length <= 1)
             return new int[] {};
-        Map<Integer, Integer> map = new HashMap<>();
+
+        HashMap<Integer, Integer> table = new HashMap<>();
         for (int i = 0; i < nums.length; ++i) {
-            int diff = target - nums[i];
-            if (map.containsKey(diff)) {
-                return new int[] { map.get(diff), i };
+            int rest = target - nums[i];
+            if (table.containsKey(rest)) {
+                return new int[] { table.get(rest), i };
             }
-            map.put(nums[i], i);
+            table.put(nums[i], i);
         }
         return new int[] {};
     }
