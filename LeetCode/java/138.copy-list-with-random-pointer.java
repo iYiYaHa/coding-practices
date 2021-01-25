@@ -93,10 +93,10 @@ class Solution {
         return getCopiedNode(head, copyMap);
     }
 
-    private Node getCopiedNode(Node node, Map<Node, Node> copyMap){
-        if(copyMap.containsKey(node)){
+    private Node getCopiedNode(Node node, Map<Node, Node> copyMap) {
+        if (copyMap.containsKey(node)) {
             return copyMap.get(node);
-        }else{
+        } else {
             Node copy = new Node(node.val);
             copyMap.put(node, copy);
             copy.next = getCopiedNode(node.next, copyMap);
@@ -111,20 +111,20 @@ class Solution {
         Queue<Node> queue = new LinkedList<>();
         Map<Node, Node> copyMap = new HashMap<>();
         copyMap.put(null, null);
-        if(head != null){
-        queue.add(head);
-        copyMap.put(head, new Node(head.val));
+        if (head != null) {
+            queue.add(head);
+            copyMap.put(head, new Node(head.val));
         }
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Node front = queue.remove();
             Node copy = copyMap.get(front);
-            if(!copyMap.containsKey(front.next)){
+            if (!copyMap.containsKey(front.next)) {
                 queue.add(front.next);
                 Node nextCopy = new Node(front.next.val);
                 copyMap.put(front.next, nextCopy);
             }
 
-            if(!copyMap.containsKey(front.random)){
+            if (!copyMap.containsKey(front.random)) {
                 queue.add(front.random);
                 Node randomCopy = new Node(front.random.val);
                 copyMap.put(front.random, randomCopy);
@@ -139,11 +139,11 @@ class Solution {
 
 class Solution {
     public Node copyRandomList(Node head) {
-        if(head == null)
+        if (head == null)
             return null;
         // Create copied nodes
         Node cur = head;
-        while(cur != null){
+        while (cur != null) {
             Node copy = new Node(cur.val);
             copy.next = cur.next;
             cur.next = copy;
@@ -152,25 +152,46 @@ class Solution {
 
         // Adjust random pointers
         cur = head;
-        while(cur != null){
+        while (cur != null) {
             Node copy = cur.next;
-            if(cur.random != null)
-              copy.random = cur.random.next;
+            if (cur.random != null)
+                copy.random = cur.random.next;
             cur = copy.next;
         }
 
         // Unlink the copied list
         Node copyHead = head.next;
         cur = head;
-        while(cur != null){
+        while (cur != null) {
             Node copy = cur.next;
             cur.next = copy.next;
-            if(cur.next != null)
-              copy.next = copy.next.next;
+            if (cur.next != null)
+                copy.next = copy.next.next;
             cur = cur.next;
         }
         return copyHead;
     }
 }
-// @lc code=end
 
+class Solution {
+    public Node copyRandomList(Node head) {
+        Map<Node, Node> copyMap = new HashMap<>();
+        copyMap.put(null, null);
+        Node cur = head;
+        while (cur != null) {
+            copyMap.put(cur, new Node(cur.val));
+            cur = cur.next;
+        }
+
+        cur = head;
+        while (cur != null) {
+            Node copied = copyMap.get(cur);
+            copied.next = copyMap.get(cur.next);
+            copied.random = copyMap.get(cur.random);
+            cur = cur.next;
+        }
+
+        return copyMap.get(head);
+    }
+}
+// @lc code=end
