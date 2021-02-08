@@ -13,18 +13,20 @@
  */
 class Solution {
     int maxPath = 0;
+
     public int diameterOfBinaryTree(TreeNode root) {
         this.maxPath = 0;
         diameterCore(root);
         return maxPath;
     }
 
-    private int diameterCore(TreeNode root){
-        if(root == null) return 0;
+    private int diameterCore(TreeNode root) {
+        if (root == null)
+            return 0;
         int left = diameterCore(root.left);
         int right = diameterCore(root.right);
-        maxPath = Math.max(maxPath,left+right);
-        return 1+Math.max(left,right);
+        maxPath = Math.max(maxPath, left + right);
+        return 1 + Math.max(left, right);
     }
 }
 // @lc code=end
