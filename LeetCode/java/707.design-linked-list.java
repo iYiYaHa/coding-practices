@@ -174,6 +174,173 @@ class MyLinkedList {
 
 }
 
+class MyLinkedList {
+
+    private Node head;
+    private Node tail;
+    private int size;
+
+    /** Initialize your data structure here. */
+    public MyLinkedList() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    /**
+     * Get the value of the index-th node in the linked list. If the index is
+     * invalid, return -1.
+     */
+    public int get(int index) {
+        Node node = getNode(index);
+        return node == null ? -1 : node.val;
+    }
+
+    /**
+     * Add a node of value val before the first element of the linked list. After
+     * the insertion, the new node will be the first node of the linked list.
+     */
+    public void addAtHead(int val) {
+        Node oldHead = head;
+        Node node = new Node(null, val, oldHead);
+        head = node;
+        if (oldHead == null) {
+            tail = node;
+        } else {
+            oldHead.prev = node;
+        }
+        ++size;
+    }
+
+    /** Append a node of value val to the last element of the linked list. */
+    public void addAtTail(int val) {
+        Node oldTail = tail;
+        Node node = new Node(oldTail, val, null);
+        tail = node;
+        if (oldTail == null) {
+            head = node;
+        } else {
+            oldTail.next = node;
+        }
+        ++size;
+    }
+
+    /**
+     * Add a node of value val before the index-th node in the linked list. If index
+     * equals to the length of linked list, the node will be appended to the end of
+     * linked list. If index is greater than the length, the node will not be
+     * inserted.
+     */
+    public void addAtIndex(int index, int val) {
+        if (!isPositionIndex(index))
+            return;
+        if (index == size) {
+            addAtTail(val);
+        } else {
+            Node node = getNode(index);
+            linkBefore(val, node);
+            ++size;
+        }
+    }
+
+    /** Delete the index-th node in the linked list, if the index is valid. */
+    public void deleteAtIndex(int index) {
+        if (!isElementIndex(index))
+            return;
+        Node node = getNode(index);
+        unlink(node);
+        --size;
+    }
+
+    private void unlink(Node node) {
+        Node next = node.next;
+        Node prev = node.prev;
+        node.next = node.prev = null;
+        if (prev == null) {
+            head = next;
+        } else {
+            prev.next = next;
+        }
+
+        if (next == null) {
+            tail = prev;
+        } else {
+            next.prev = prev;
+        }
+    }
+
+    private Node linkBefore(int val, Node succ) {
+        Node prev = succ.prev;
+        Node node = new Node(prev, val, succ);
+        succ.prev = node;
+        if (prev == null) {
+            head = node;
+        } else {
+            prev.next = node;
+        }
+        return node;
+    }
+
+    private Node getNode(int index) {
+        if (!isElementIndex(index))
+            return null;
+        if (index < (size >> 1)) {
+            Node cur = head;
+            for (int i = 0; i < index; ++i) {
+                cur = cur.next;
+            }
+            return cur;
+        } else {
+            Node cur = tail;
+            for (int i = size - 1; i > index; --i) {
+                cur = cur.prev;
+            }
+            return cur;
+        }
+    }
+
+    private void checkPositionIndex(int index) {
+        if (!isPositionIndex(index))
+            throw new IndexOutOfBoundsException(outOfBoundMsg(index));
+    }
+
+    private String outOfBoundMsg(int index) {
+        return "Index: " + index + ", Size: " + size;
+    }
+
+    private boolean isElementIndex(int index) {
+        return 0 <= index && index < size;
+    }
+
+    private boolean isPositionIndex(int index) {
+        return 0 <= index && index <= size;
+    }
+
+    private static class Node {
+        Node prev;
+        Node next;
+        Integer val;
+
+        Node(Integer val) {
+            this.val = val;
+            this.prev = this.next = null;
+        }
+
+        Node(Node prev, Integer val, Node next) {
+            this.prev = prev;
+            this.val = val;
+            this.next = next;
+        }
+    }
+}
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * MyLinkedList obj = new MyLinkedList(); int param_1 = obj.get(index);
+ * obj.addAtHead(val); obj.addAtTail(val); obj.addAtIndex(index,val);
+ * obj.deleteAtIndex(index);
+ */
+
 /**
  * Your MyLinkedList object will be instantiated and called as such:
  * MyLinkedList obj = new MyLinkedList(); int param_1 = obj.get(index);
