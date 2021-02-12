@@ -30,8 +30,7 @@ class Solution {
         TreeNode left = buildTreeCore(inorder,inBeg,inRootInd-1,postorder,postBeg,leftPostEnd);
         TreeNode right = buildTreeCore(inorder,inRootInd+1,inEnd,postorder,leftPostEnd+1,postEnd-1);
 
-        TreeNode rootNode = new TreeNode(rootVal, left, right);
-        return rootNode;
+        return new TreeNode(rootVal, left, right);
     }
 }
 // @lc code=end

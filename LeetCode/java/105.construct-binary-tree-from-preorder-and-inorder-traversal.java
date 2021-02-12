@@ -30,9 +30,8 @@ class Solution {
         int leftInEnd = rootInd - inBeg + preBeg;
         TreeNode left = buildTreeCore(preorder, preBeg + 1, leftInEnd, inorder, inBeg, rootInd - 1);
         TreeNode right = buildTreeCore(preorder, leftInEnd + 1, preEnd, inorder, rootInd + 1, inEnd);
-
-        TreeNode rootNode = new TreeNode(rootVal, left, right);
-        return rootNode;
+ 
+        return new TreeNode(rootVal, left, right);
     }
 }
 // @lc code=end
