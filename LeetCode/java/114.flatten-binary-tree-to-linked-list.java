@@ -38,5 +38,30 @@ class Solution {
         }
     }
 }
+
+class Solution {
+    TreeNode tail = null;
+    public void flatten(TreeNode root) {
+        if(root == null)
+            return;
+        tail = root;
+        
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        
+        if(left != null){
+        
+            // Flatten the left subtree.
+            flatten(left);
+            // Put the left part between the root node and the right part.
+            root.right = left;
+            root.left = null;
+            // Concatenate the tail of the left part with the head of the right part.
+            tail.right = right;
+        }
+        // Flatten the right part.
+        flatten(right);
+    }
+}
 // @lc code=end
 

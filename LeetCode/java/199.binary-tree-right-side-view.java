@@ -12,35 +12,28 @@
  * TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left
  * = left; this.right = right; } }
  */
-class SolutionA {
+class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        LinkedList<Integer> result = new LinkedList<>();
-        rightSideViewCore(root, result);
-        return result;
-    }
-
-    private void rightSideViewCore(TreeNode root, LinkedList<Integer> res) {
-        if (root == null)
-            return;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        Integer layerCnt = 1;
-        res.addLast(root.val);
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        List<Integer> res = new LinkedList<>();
+        if (root != null)
+            queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode head = queue.remove();
-            System.out.println(head.val);
-            if (head.right != null) {
-                queue.add(head.right);
-            }
-            if (head.left != null) {
-                queue.add(head.left);
-            }
-            --layerCnt;
-            if (layerCnt == 0 && !queue.isEmpty()) {
-                layerCnt = queue.size();
-                res.addLast(queue.element().val);
+            int layerSize = queue.size();
+            for (int i = 0; i < layerSize; ++i) {
+                TreeNode cur = queue.poll();
+                if (i == layerSize - 1) {
+                    res.add(cur.val);
+                }
+                if (cur.left != null) {
+                    queue.offer(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.offer(cur.right);
+                }
             }
         }
+        return res;
     }
 }
 
