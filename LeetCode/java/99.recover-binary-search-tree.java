@@ -125,3 +125,63 @@ class SolutionB {
         inorderTraversal(root.right, nodeFun);
     }
 }
+
+class Solution{
+    private TreeNode prev;
+    private TreeNode first;
+    private TreeNode second;
+
+    public void recoverTree(TreeNode root) {
+        prev = null;
+        first = null;
+        second = null;
+        inorderTraversal(root, this::nodeFun);
+        swap(first, second);
+    }
+
+    private void inorderTraversal(TreeNode root, Consumer<TreeNode> nodeFun){
+        if(root == null){
+            return;
+        }
+        TreeNode cur = root;
+        while(cur != null){
+            if(cur.left == null){
+                nodeFun.accept(cur);
+                cur = cur.right;
+            }else{
+                TreeNode prev = cur.left;
+                while(prev.right != null && prev.right != cur){
+                    prev = prev.right;
+                }
+                if(prev.right == null){
+                    prev.right = cur;
+                    cur = cur.left;
+                }else{
+                    nodeFun.accept(cur);
+                    prev.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+    }
+ 
+    private void nodeFun(TreeNode node){
+        if(node == null)
+            return;
+        if(prev != null && prev.val > node.val){
+            if(first == null){
+                first = prev;
+            }
+            second = node;
+        }
+        prev = node;
+    }
+   
+    private void swap(TreeNode first, TreeNode second){
+        if(first == null || second == null)
+            return;
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
+    }
+}
