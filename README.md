@@ -1,2 +1,2 @@
-# LeetCode
-some solutions on leetcode problem. Just for the need of keeping coding.
+# Algorithm Problems
+Some solutions on algorithm problems. Just for the need of keeping coding.
