@@ -77,8 +77,6 @@ class Solution {
             second.next = mergeList(first, second.next);
             return second;
         }
-
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
