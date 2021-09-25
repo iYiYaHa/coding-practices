@@ -142,4 +142,48 @@ class Solution {
         return ansRight != s.length() ? s.substring(ansLeft, ansRight + 1):"";
     }
 }
+class Solution {
+    public String minWindow(String s, String t) {
+        if(s.isEmpty() || t.isEmpty()){
+            return "";
+        }
+
+        Map<Character, Integer> chCntInTarget = new HashMap<>();
+        for (Character ch : t.toCharArray()) {
+            chCntInTarget.merge(ch, 1, Integer::sum);
+        }
+        int requiredChar = chCntInTarget.size();
+
+        int satisfiedChar = 0;
+        int ansLeft = -1, ansRight = s.length();
+
+        Map<Character, Integer> chCntInWindow = new HashMap<>();
+        for (int beg = 0, end = 0; end < s.length(); ++end) {
+            Character chAtEnd = s.charAt(end);
+            chCntInWindow.merge(chAtEnd, 1, Integer::sum);
+
+            if(chCntInTarget.containsKey(chAtEnd) && Objects.equals(chCntInWindow.get(chAtEnd), chCntInTarget.get(chAtEnd))){
+                ++satisfiedChar;
+            }
+
+            while(beg <= end && satisfiedChar == requiredChar){
+                // If the current window between beg and end covers the target string.
+                // Update the answer if necessary.
+                if (ansRight - ansLeft + 1 >  end - beg + 1) {
+                    ansLeft = beg;
+                    ansRight = end;
+                }
+
+                Character chAtBeg = s.charAt(beg);
+                chCntInWindow.merge(chAtBeg, -1, Integer::sum);
+                if (chCntInTarget.containsKey(chAtBeg) && chCntInWindow.getOrDefault(chAtBeg, 0) < chCntInTarget.get(chAtBeg)) {
+                    --satisfiedChar;
+                }
+                ++beg;
+
+            }
+        }
+        return ansRight != s.length() ? s.substring(ansLeft, ansRight + 1):"";
+    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
