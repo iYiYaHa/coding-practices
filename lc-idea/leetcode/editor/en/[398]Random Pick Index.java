@@ -69,6 +69,26 @@ class Solution {
     }
 }
 
+class Solution {
+
+    private Map<Integer, List<Integer>> inverseIndex;
+    private Random random;
+
+    public Solution(int[] nums) {
+        this.inverseIndex = new HashMap<>();
+        for(int i = 0;i < nums.length; ++i){
+            inverseIndex.computeIfAbsent(nums[i], num->new ArrayList<Integer>()).add(i);
+        }
+        this.random = new Random();
+    }
+
+    public int pick(int target) {
+        List<Integer> indexList = inverseIndex.get(target);
+        int randomInd = random.nextInt(indexList.size());
+        return indexList.get(randomInd);
+    }
+}
+
 /**
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(nums);
