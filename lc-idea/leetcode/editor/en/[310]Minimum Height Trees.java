@@ -100,4 +100,66 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        if (n <= 0) {
+            return new ArrayList<>();
+        }
+
+        // build the graph
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < n; ++i) {
+            graph.put(i, new ArrayList<>());
+        }
+        for (int[] edge : edges) {
+            int from = edge[0];
+            int to = edge[1];
+            graph.get(from).add(to);
+            graph.get(to).add(from);
+        }
+
+        boolean[] visited = new boolean[n];
+        int[] prev = new int[n];
+        int randomNode = 0;
+        // find the farthest node from a random node
+        int farthestFromRandomNode = bfs(graph, randomNode, prev, visited);
+        // find the farthest node from the previous node
+        int otherEndOfDiameter = bfs(graph, farthestFromRandomNode, prev, visited);
+
+        // assemble the longest path
+        List<Integer> path = new ArrayList<>();
+        int curNode = otherEndOfDiameter;
+        while (curNode != -1) {
+            path.add(curNode);
+            curNode = prev[curNode];
+        }
+        // find the middle node of the longest path
+        int pathLen = path.size();
+        return pathLen % 2 == 0 ? Arrays.asList(path.get(pathLen / 2 - 1), path.get(pathLen / 2)) : Arrays.asList(path.get(pathLen / 2));
+    }
+
+    private int bfs(Map<Integer, List<Integer>> graph, int fromNode, int[] prev, boolean[] visited) {
+        for (int i = 0; i < visited.length; ++i) {
+            visited[i] = false;
+        }
+        int lastNode = -1;
+        prev[fromNode] = -1;
+        visited[fromNode] = true;
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(fromNode);
+        while (!queue.isEmpty()) {
+            int curNode = queue.poll();
+            lastNode = curNode;
+            for (int neighbor : graph.get(curNode)) {
+                if (!visited[neighbor]) {
+                    queue.add(neighbor);
+                    prev[neighbor] = curNode;
+                    visited[neighbor] = true;
+                }
+            }
+        }
+        return lastNode;
+    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
