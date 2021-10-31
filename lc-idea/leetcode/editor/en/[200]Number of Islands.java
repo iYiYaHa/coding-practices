@@ -1,4 +1,4 @@
-//Given an m x n 2D binary grid grid which represents a map of '1's (land) and 
+//Given an m x n 2D binary grid grid which represents a map of '1's (land) and
 //'0's (water), return the number of islands. 
 //
 // An island is surrounded by water and is formed by connecting adjacent lands 
@@ -49,30 +49,31 @@ class Solution {
         if (grid == null || grid.length <= 0 || grid[0].length <= 0) {
             return 0;
         }
-        int n = grid.length;
-        int m = grid[0].length;
         int ans = 0;
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
+        for (int i = 0; i < grid.length; ++i) {
+            for (int j = 0; j < grid[i].length; ++j) {
                 ans += isIslandAround(grid, i, j) ? 1 : 0;
             }
         }
         return ans;
     }
 
-    private boolean isIslandAround(char[][] grid, int i, int j) {
-        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) {
+    private boolean isIslandAround(char[][] grid, int row, int col) {
+        if (row < 0 || row >= grid.length) {
             return false;
         }
-        if (grid[i][j] == '0') {
+        if (col < 0 || col >= grid[row].length) {
             return false;
         }
-        grid[i][j] = '0';
-        isIslandAround(grid, i - 1, j);
-        isIslandAround(grid, i + 1, j);
-        isIslandAround(grid, i, j + 1);
-        isIslandAround(grid, i, j - 1);
-        return true;
+        if (grid[row][col] == '1') {
+            grid[row][col] = '0';
+            isIslandAround(grid, row + 1, col);
+            isIslandAround(grid, row - 1, col);
+            isIslandAround(grid, row, col + 1);
+            isIslandAround(grid, row, col - 1);
+            return true;
+        }
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
