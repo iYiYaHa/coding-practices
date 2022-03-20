@@ -120,6 +120,12 @@ class Solution {
     }
 }
 
+// Pouring from a to b is like (0, (n * a) % b)
+// Pouring from b to a is like ((n * b) % a, 0)
+// Empty a is -a
+// Empty b is -b
+// Fill a is +a
+// Fill b is -b
 class SolutionB {
     public boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
         if(jug1Capacity + jug2Capacity < targetCapacity){
