@@ -22,4 +22,5 @@
 21. 83
 22. 836
 23. 91
-24. 310 tree dp + topological sorting + diameter of the graph 
+24. 310 tree dp + topological sorting + diameter of the graph
+25. 11
