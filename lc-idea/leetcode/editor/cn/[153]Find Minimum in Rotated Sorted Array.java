@@ -71,4 +71,21 @@ class Solution {
         return nums[left];
     }
 }
+
+class Solution {
+    public int findMin(int[] nums) {
+        if(nums == null || nums.length <= 0){
+            throw new IllegalArgumentException("Empty array...");
+        }
+        return findMin(nums, 0, nums.length - 1);
+    }
+
+    public int findMin(int[] nums, int left, int right){
+        if(nums[left] <= nums[right]){
+            return nums[left];
+        }
+        int mid = left + (right - left) / 2;
+        return Math.min(findMin(nums, left, mid) , findMin(nums, mid + 1, right));
+    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
